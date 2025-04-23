@@ -6,6 +6,7 @@
     <title>rosetkaqqè | Digital Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Основные стили остаются прежними */
         * {
             margin: 0;
             padding: 0;
@@ -26,111 +27,79 @@
             padding: 40px 20px;
         }
 
-        .profile-header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
+        /* Стили для музыкального плеера */
+        #music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            opacity: 0.7;
+            transition: opacity 0.3s;
         }
 
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #4CAF50;
-            margin-bottom: 20px;
-            object-fit: cover;
-            transition: transform 0.3s;
+        #music-player:hover {
+            opacity: 1;
         }
 
-        .avatar:hover {
-            transform: scale(1.05);
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #4CAF50;
-        }
-
-        .badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
+        /* Улучшенные анимации для бейджей */
         .badge {
             background: rgba(76, 175, 80, 0.1);
             padding: 8px 15px;
             border-radius: 20px;
             border: 1px solid #4CAF50;
             font-size: 0.9em;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        .badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
         }
 
-        .social-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
-        }
-
+        /* Кликабельные карточки */
         .social-card {
-            background: rgba(76, 175, 80, 0.1);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
+            position: relative;
+            overflow: hidden;
             transition: transform 0.3s;
         }
 
-        .social-card:hover {
-            transform: translateY(-5px);
+        .social-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(76, 175, 80, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .social-card i {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #4CAF50;
+        .social-card:hover::after {
+            opacity: 1;
         }
 
-        a {
-            color: #fff;
-            text-decoration: none;
+        .social-link {
             display: block;
-            margin: 5px 0;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
+            text-decoration: none;
+            color: inherit;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="profile-header">
-            <img src="https://via.placeholder.com/120" alt="Avatar" class="avatar">
-            <h1>rosetkaqqè</h1>
-            <div class="badges">
-                <div class="badge">@w3bsocial</div>
-                <div class="badge">1L Squad</div>
-            </div>
-        </div>
+    <!-- YouTube Music Player -->
+    <iframe id="music-player"
+            width="300" 
+            height="80"
+            src="https://www.youtube.com/embed/I87OWDHBXbU?autoplay=1&loop=1&mute=1&playlist=I87OWDHBXbU"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            style="border-radius: 15px;">
+    </iframe>
 
+    <div class="container">
+        <!-- Остальная часть вашего сайта -->
         <div class="section">
             <h2>Роли и проекты</h2>
             <div class="badges" style="margin-top: 15px;">
@@ -145,27 +114,54 @@
         <div class="section">
             <h2>Контакты и ссылки</h2>
             <div class="social-links">
-                <div class="social-card">
-                    <i class="fab fa-telegram"></i>
-                    <a href="https://t.me/yournick" target="_blank">Telegram</a>
-                    <a href="https://t.me/yourchannel" target="_blank">Канал</a>
-                </div>
-                
-                <div class="social-card">
-                    <i class="fas fa-shopping-cart"></i>
-                    <a href="#">Funpay</a>
-                    <a href="#">Конфиги</a>
-                </div>
-
-                <div class="social-card">
-                    <i class="fas fa-users"></i>
-                    <a href="#">Тестеры</a>
-                    <div style="font-size: 0.9em;">
-                        relake • felon • shine
+                <a href="https://t.me/yournick" 
+                   class="social-link" 
+                   target="_blank">
+                    <div class="social-card">
+                        <i class="fab fa-telegram"></i>
+                        <div>Telegram</div>
+                        <div>Канал</div>
                     </div>
-                </div>
+                </a>
+
+                <a href="#" class="social-link">
+                    <div class="social-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div>Funpay</div>
+                        <div>Конфиги</div>
+                    </div>
+                </a>
+
+                <a href="#" class="social-link">
+                    <div class="social-card">
+                        <i class="fas fa-users"></i>
+                        <div>Тестеры</div>
+                        <div style="font-size: 0.9em;">
+                            relake • felon • shine
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
+
+    <script>
+        // Включение звука по клику
+        document.addEventListener('click', function() {
+            const iframe = document.querySelector('iframe');
+            iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+        });
+
+        // Анимация при наведении на карточки
+        document.querySelectorAll('.social-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'none';
+            });
+        });
+    </script>
 </body>
 </html>
